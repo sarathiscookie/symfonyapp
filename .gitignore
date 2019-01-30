@@ -1,0 +1,43 @@
+/.web-server-pid
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
+/vendor/
+/web/bundles/
+
+### Composer ###
+Composer.phar
+/vendor/
+
+# Ignore a library lock file
+Composer.lock
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+### PhpStorm ###
+.idea/
+
+### VisualStudioCode ###
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json.history
+
+
+
