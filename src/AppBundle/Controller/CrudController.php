@@ -9,12 +9,34 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CrudController extends Controller
 {
+    /**
+     * @Route("/", name="list")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function listAction()
+    {
+        $product = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->findAll();
+
+        //dump($product);
+
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found'
+            );
+        }
+
+        return $this->render('AppBundle::list.html.php', ['products' => $product]);
+    }
+
     /**
      * @Route("/read")
      * @return \Symfony\Component\HttpFoundation\Response
