@@ -49,15 +49,15 @@ class CrudController extends Controller
     }
 
     /**
-     * @Route("/read/render/normal")
+     * @Route("/read/render/normal/html")
      */
-   /* public function readRenderNormalAction()
+    public function readRenderNormalHtmlAction()
     {
         $number = random_int(0, 100);
 
         return $this->render('AppBundle::crud.html.php', [
             'number' => $number,
         ]);
-    }*/
+    }
 
 }
