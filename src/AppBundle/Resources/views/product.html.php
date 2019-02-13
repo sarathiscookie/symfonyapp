@@ -24,6 +24,7 @@
     <?php echo $view['form']->start( $form ); ?>
     <div class="form-group">
         <?php echo $view['form']->label($form['name'], 'Product Name'); ?>
+        <?php echo $view['form']->errors( $form['name'] ) ?>
         <?php echo $view['form']->widget( $form['name'], [
             'attr' => [
                 'placeholder' => 'Product Name',
@@ -33,6 +34,7 @@
     </div>
     <div class="form-group">
         <?php echo $view['form']->label($form['price'], 'Price'); ?>
+        <?php echo $view['form']->errors( $form['price'] ) ?>
         <?php echo $view['form']->widget( $form['price'], [
             'attr' => [
                 'placeholder' => 'Price',
@@ -42,6 +44,7 @@
     </div>
     <div class="form-group">
         <?php echo $view['form']->label($form['description'], 'Description'); ?>
+        <?php echo $view['form']->errors( $form['description'] ) ?>
         <?php echo $view['form']->widget( $form['description'], [
             'attr' => [
                 'placeholder' => 'Description',
