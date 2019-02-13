@@ -169,4 +169,28 @@ class CrudController extends Controller
 
         return $this->redirectToRoute('list');
     }
+
+    /**
+     * @Route("/delete/{productID}")
+     * @param int $productID
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function deleteAction($productID)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $product       = $entityManager->getRepository(Product::class)->find($productID);
+
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$productID
+            );
+        }
+
+        $entityManager->remove($product);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('list');
+    }
+
+
 }
