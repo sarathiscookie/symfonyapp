@@ -38,6 +38,26 @@ class CrudController extends Controller
     }
 
     /**
+     * @Route("/{individualList}", name="list_one")
+     * @param int $individualList
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function listOneAction($individualList)
+    {
+        $product = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->find($individualList);
+
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found for id: '.$individualList
+            );
+        }
+
+        return $this->render('AppBundle::listIndividual.html.php', ['product' => $product]);
+    }
+
+    /**
      * @Route("/read")
      * @return \Symfony\Component\HttpFoundation\Response
      */

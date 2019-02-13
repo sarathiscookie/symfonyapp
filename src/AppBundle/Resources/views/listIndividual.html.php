@@ -22,16 +22,14 @@
 <h1>Products</h1>
 
 <?php
-if(!empty($products)) {
-    foreach($products as $product) {
-        ?>
-        <ul>
-            <li><a href="#"><?php echo $product->getName(); ?></a></li>
-            <li><a href="#"><?php echo $product->getPrice(); ?></a></li>
-            <li><a href="#"><?php echo $product->getDescription(); ?></a></li>
-        </ul>
-        <?php
-    }
+if(!empty($product)) {
+?>
+<ul>
+   <li role="presentation"><a href="#"><?php echo $product->getName(); ?></a></li>
+   <li role="presentation"><a href="#"><?php echo $product->getPrice(); ?></a></li>
+   <li role="presentation"><a href="#"><?php echo $product->getDescription(); ?></a></li>
+</ul>
+<?php
 }
 ?>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
