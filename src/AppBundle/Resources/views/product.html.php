@@ -21,7 +21,41 @@
 <body>
 <h1>Create Products</h1>
 <div class="container">
-    <?php dump($form); ?>
+    <?php echo $view['form']->start( $form ); ?>
+    <div class="form-group">
+        <?php echo $view['form']->label($form['name'], 'Product Name'); ?>
+        <?php echo $view['form']->widget( $form['name'], [
+            'attr' => [
+                'placeholder' => 'Product Name',
+                'class'       => 'form-control'
+            ]
+        ]); ?>
+    </div>
+    <div class="form-group">
+        <?php echo $view['form']->label($form['price'], 'Price'); ?>
+        <?php echo $view['form']->widget( $form['price'], [
+            'attr' => [
+                'placeholder' => 'Price',
+                'class'       => 'form-control'
+            ]
+        ]); ?>
+    </div>
+    <div class="form-group">
+        <?php echo $view['form']->label($form['description'], 'Description'); ?>
+        <?php echo $view['form']->widget( $form['description'], [
+            'attr' => [
+                'placeholder' => 'Description',
+                'class'       => 'form-control'
+            ]
+        ]); ?>
+    </div>
+    <?php echo $view['form']->widget( $form['save'], [
+        'label' => 'Create',
+        'attr'  => ['class' => 'btn-block btn-lg btn btn-primary']
+    ]) ?>
+
+    <?php echo $view['form']->widget( $form['_token'] ); ?>
+    <?php echo $view['form']->end( $form, ["render_rest" => false]) ?>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

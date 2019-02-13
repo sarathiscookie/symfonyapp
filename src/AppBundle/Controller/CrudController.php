@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\ProductType;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,6 +21,24 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CrudController extends Controller
 {
+    /**
+     * @Route("/product/create")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function productCreateAction(Request $request)
+    {
+        $product = new Product();
+        $form    = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            dump($product);
+        }
+
+        return $this->render('AppBundle::product.html.php', ['form' => $form->createView()]);
+    }
+
     /**
      * @Route("/", name="list")
      * @return \Symfony\Component\HttpFoundation\Response
@@ -193,40 +212,5 @@ class CrudController extends Controller
         $entityManager->flush();
 
         return $this->redirectToRoute('list');
-    }
-
-    /**
-     * @Route("/product/create")
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function productCreateAction(Request $request)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $product = new Product();
-        /*use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;*/
-        $form    = $this->createFormBuilder($product)
-            ->add('name', TextType::class)
-            ->add('price', NumberType::class)
-            ->add('description', TextareaType::class)
-            ->add('save', SubmitType::class, ['label' => 'create Task'])
-            ->getForm();
-
-        return $this->render('default/crudProduct.html.twig', ['form' =>$form->createView()]);
-        /*$product->setName('Nokia');
-        $product->setPrice(19000);
-        $product->setDescription('Mobile');
-
-        // tells Doctrine you want to (eventually) save the Product (no queries yet)
-        $entityManager->persist($product);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
-
-        //return new Response('Saved new product with id '.$product->getId()); //OR
-        return $this->redirectToRoute('list');*/
     }
 }
