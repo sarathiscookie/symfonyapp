@@ -28,12 +28,15 @@ class CrudController extends Controller
      */
     public function productCreateAction(Request $request)
     {
+        $entityManager = $this->getDoctrine()->getManager();
+
         $product = new Product();
         $form    = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            dump($product);
+            $entityManager->persist($product);
+            $entityManager->flush();
         }
 
         return $this->render('AppBundle::product.html.php', ['form' => $form->createView()]);
