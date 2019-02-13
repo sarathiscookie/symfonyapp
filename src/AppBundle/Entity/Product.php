@@ -59,10 +59,13 @@ class Product
 
     /**
      * @param mixed $name
+     * @return Product
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -75,10 +78,13 @@ class Product
 
     /**
      * @param mixed $price
+     * @return Product
      */
     public function setPrice($price)
     {
         $this->price = $price;
+
+        return $this;
     }
 
     /**
@@ -91,10 +97,13 @@ class Product
 
     /**
      * @param mixed $description
+     * @return Product
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
     }
 
 
